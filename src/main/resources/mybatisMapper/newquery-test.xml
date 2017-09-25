@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bonc.dw3.mapper.TestMapper">
+
+
+    <select id="getAllProCities" resultType="java.util.HashMap" parameterType="java.lang.String">
+        select  p.prov_id "provId",p.pro_name "provName",a.area_id "areaId",a.area_desc "areaName", a.area_short_desc
+        "areaShortName"
+        from (select prov_id, pro_name
+        from v_dw_newquery_DMCODE_PROVINCE t
+        where t.ord2 is not null
+        and t.s_n_mark in ('10','21')
+        <if test="null != provId and '' != provId ">
+            and  t.prov_id = #{provId}
+        </if>
+        order by to_number(ord2) asc) p
+        left join (select area.prov_id, area.area_id, area.area_desc, area.area_short_desc
+        from dmcode_pub.dmcode_area area
+        where area.is_valid = '1'
+        and AREA.AREA_ID != '999') a
+        on p.prov_id = a.prov_id
+
+    </select>
+
+</mapper>

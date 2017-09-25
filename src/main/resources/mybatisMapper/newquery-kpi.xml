@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bonc.dw3.mapper.KpiMapper">
+
+
+    <!-- 31省 -->
+    <select id="get31Provinces" resultType="java.util.HashMap">
+      select p.prov_id id,p.pro_name name
+             from v_dw_newquery_DMCODE_PROVINCE p
+             where p.ord2 is not null
+             order by to_number(p.ord2)
+  </select>
+
+    <select id="getAllProvinces" resultType="java.util.HashMap">
+        select p.prov_id id,p.pro_name name
+        from v_dw_newquery_DMCODE_PROVINCE p
+        order by to_number(p.ord2)
+    </select>
+
+    <!--  地市 -->
+    <select id="getCities" resultType="java.util.HashMap">
+        select p.prov_id "provId",p.pro_name "provName",a.area_id "areaId",a.area_desc "areaName", a.area_short_desc
+        "areaShortName"
+        from (select prov_id, pro_name
+        from v_dw_newquery_DMCODE_PROVINCE t
+        where t.ord2 is not null
+        <!-- 111:全国;112:北10;113:南21 -->
+        <if test="provId !=null and provId !='' ">
+            <choose>
+                <when test="provId == '111' ">
+                </when>
+                <when test="provId == '112' ">
+                    and t.s_n_mark='10'
+                </when>
+                <when test="provId == '113' ">
+                    and t.s_n_mark='21'
+                </when>
+                <otherwise>and t.prov_id= #{provId}</otherwise>
+            </choose>
+        </if>
+        order by to_number(ord2) asc) p
+        left join (select area.prov_id, area.area_id, area.area_desc, area.area_short_desc
+        from dmcode_pub.dmcode_area area
+        where area.is_valid = '1'
+        and AREA.AREA_ID != '999') a
+        on p.prov_id = a.prov_id
+        where 1=1
+        <if test="areaNo !=null and areaNo !='' and areaNo != '-1' ">
+            and area_id = #{areaNo}
+        </if>
+        <if test="cityId !=null and cityId !='' and cityId != '-1'">
+            and area_id = #{cityId}
+        </if>
+    </select>
+
+    <!--  地市 -->
+    <select id="getCitiesWithNoDistinguish" resultType="java.util.HashMap">
+        select p.prov_id "provId",p.pro_name "provName",a.area_id "areaId",a.area_desc "areaName", a.area_short_desc
+        "areaShortName"
+        from (select prov_id, pro_name
+        from v_dw_newquery_DMCODE_PROVINCE t
+        where t.ord2 is not null
+        <!-- 111:全国;112:北10;113:南21 -->
+        <if test="provId !=null and provId !='' ">
+            <choose>
+                <when test="provId == '111' ">
+                </when>
+                <when test="provId == '112' ">
+                    and t.s_n_mark='10'
+                </when>
+                <when test="provId == '113' ">
+                    and t.s_n_mark='21'
+                </when>
+                <otherwise>and t.prov_id= #{provId}</otherwise>
+            </choose>
+        </if>
+        order by to_number(ord2) asc) p
+        left join (select area.prov_id, area.area_id, area.area_desc, area.area_short_desc
+        from dmcode_pub.dmcode_area area
+        where area.is_valid = '1'
+        and AREA.AREA_ID != '999') a
+        on p.prov_id = a.prov_id
+        union all
+        select p.prov_id "provId",p.pro_name "provName",'**' "areaId",'无法区分' "areaName", '无法区分' "areaShortName"
+        from v_dw_newquery_DMCODE_PROVINCE p
+        where p.ord2 is not null
+        <!-- 111:全国;112:北10;113:南21 -->
+        <if test="provId !=null and provId !='' ">
+            <choose>
+                <when test="provId == '111' ">
+                </when>
+                <when test="provId == '112' ">
+                    and p.s_n_mark='10'
+                </when>
+                <when test="provId == '113' ">
+                    and p.s_n_mark='21'
+                </when>
+                <otherwise>and p.prov_id= #{provId}</otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <!--根据前端传参，拿到所有省份-->
+    <select id="getProvsViaProvId" resultType="java.util.HashMap">
+        select prov_id "id", pro_name "name"
+        from v_dw_newquery_DMCODE_PROVINCE t
+        where 1=1
+        <!-- 111:全国;112:北10;113:南21 -->
+        <if test="provId !=null and provId !='' ">
+            <choose>
+                <when test="provId == '111' ">
+                </when>
+                <when test="provId == '112' ">
+                    and t.s_n_mark='10'
+                </when>
+                <when test="provId == '113' ">
+                    and t.s_n_mark='21'
+                </when>
+                <otherwise>and t.prov_id= #{provId}</otherwise>
+            </choose>
+        </if>
+        order by to_number(ord2) asc
+    </select>
+
+</mapper>

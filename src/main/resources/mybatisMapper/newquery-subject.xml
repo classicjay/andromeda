@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bonc.dw3.mapper.SubjectMapper">
+
+    <select id="getModuleKpiRelByModuleId" resultType="java.util.Map">
+        select kpi_code "kpiCode"
+        from dw_newquery_module_kpi_rel
+        where 1 = 1
+        <if test="moduleId !=null and moduleId !='' ">
+            and module_code = #{moduleId}
+        </if>
+    </select>
+
+</mapper>
