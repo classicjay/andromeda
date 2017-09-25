@@ -53,6 +53,7 @@ public class QueryDataFromHbaseServiceImpl implements QueryDataService{
             log.error("query redis failure", e);
         }
         for (Object result:redisResult){
+            log.info("----本条result"+String.valueOf(result));
             resultList.add(String.valueOf(result));
         }
         return resultList;
