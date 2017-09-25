@@ -52,7 +52,7 @@ public class KpiService implements EnvironmentAware {
     /**
      * 缓冲区
      */
-    public BlockingQueue<DataObject> queue = new LinkedBlockingQueue<DataObject>(60);
+//    public BlockingQueue<DataObject> queue = new LinkedBlockingQueue<DataObject>(60);
 
     private static Logger log = LoggerFactory.getLogger(KpiService.class);
 
@@ -675,6 +675,7 @@ public class KpiService implements EnvironmentAware {
 
     private void multiThreadProcess(Map<String, Object> paramMap, List<Map<String, Object>> multiThreadResult,
                                     List<String> dateList, String dateType) {
+        BlockingQueue<DataObject> queue = new LinkedBlockingQueue<DataObject>(60);
         int toatalOfferNum = 0;
         int toatalTakeNum = 0;
         new OfferDataThread(dateList, dateType, queue, paramMap).start();
