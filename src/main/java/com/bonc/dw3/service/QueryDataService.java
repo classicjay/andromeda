@@ -14,4 +14,5 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public interface QueryDataService {
     List<String> queryData(List<Get> keyList, DataObject dataObject);
+    List<String> queryRedisData(List<String> keyList);
 }

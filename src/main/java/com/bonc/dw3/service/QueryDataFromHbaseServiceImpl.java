@@ -2,6 +2,7 @@ package com.bonc.dw3.service;
 
 import com.bonc.dw3.bean.DataObject;
 import com.bonc.dw3.common.util.HbaseRexUtil;
+import com.bonc.dw3.common.util.RedisUtils;
 import org.apache.hadoop.hbase.client.Get;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,23 @@ public class QueryDataFromHbaseServiceImpl implements QueryDataService{
         }
         //log.info("query hbase result " + hbaseResult);
         return hbaseResult;
+    }
+
+    @Override
+    public List<String> queryRedisData(List<String> keyList) {
+
+        List<Object> redisResult = null;
+        List<String> resultList = null;
+        try {
+            redisResult = RedisUtils.getResult(keyList);
+
+        } catch (Exception e) {
+            log.error("query redis failure", e);
+        }
+        for (Object result:redisResult){
+            resultList.add(String.valueOf(result));
+        }
+        return resultList;
     }
 
     //处理维度为空的情况

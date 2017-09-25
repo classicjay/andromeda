@@ -16,4 +16,5 @@ import java.util.Map;
 public interface ComputeTaskService {
     List<Map<String,Object>> run(DataObject dataObject);
     List<Get> generateKeyList(DataObject dataObject);
+    List<String> generateRedisKeyList(DataObject dataObject);
 }
