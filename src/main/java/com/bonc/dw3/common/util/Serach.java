@@ -16,7 +16,7 @@ public class Serach {
 //
 //            // batch read
 //            for (int i = 0; i <1; i++) {
-//                jcp.get("DAY#20170817#CKP_23353#038#V0350600#**#30AAAAAA#99AA#01");
+    //                jcp.get("DAY#20170817#CKP_23353#038#V0350600#**#30AAAAAA#99AA#01");
 //            }
 //            batchResult = jcp.syncAndReturnAll();
 //        System.out.println(batchResult.get(0).toString());

@@ -43,12 +43,12 @@ public class QueryDataFromHbaseServiceImpl implements QueryDataService{
 
     @Override
     public List<String> queryRedisData(List<String> keyList) {
-
+        log.info("---传进来的keylist长度"+keyList.size());
         List<Object> redisResult = null;
         List<String> resultList = null;
         try {
             redisResult = RedisUtils.getResult(keyList);
-
+            log.info("------resResult长度："+redisResult.size());
         } catch (Exception e) {
             log.error("query redis failure", e);
         }
