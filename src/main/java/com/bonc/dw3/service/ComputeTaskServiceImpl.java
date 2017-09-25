@@ -252,7 +252,7 @@ public class ComputeTaskServiceImpl implements ComputeTaskService {
         List<List<String>> recursiveResult = new ArrayList<List<String>>();
         // 递归实现笛卡尔积
         DescartesUtils.recursive(dimValue, recursiveResult, 0, new ArrayList<String>());
-        System.out.println("****************************笛卡尔积结果长度"+recursiveResult.size()+"*******************");
+        System.out.println("-----------笛卡尔积结果长度"+recursiveResult.size());
         //1.拼接key，规则
         // 散列码：(short)(DAY#账期#指标编码#省分#地市#**).hashcode() & 0x7FFF
         // #DAY账期#指标编码#省分#地市#**#合约#渠道#产品
@@ -328,8 +328,7 @@ public class ComputeTaskServiceImpl implements ComputeTaskService {
             hashKey.setLength(0);
             rowKey.setLength(0);
         }
-        log.info("rowKey长度"+rowKeyList.size());
-        log.info("rowKey集合：  "+(rowKeyList.size() > 1 ? rowKeyList.get(0) : null));
+        log.info("-------------rowKey长度"+rowKeyList.size());
         return rowKeyList;
     }
 

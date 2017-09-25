@@ -80,7 +80,7 @@ public class KpiTableComputeTaskService extends ComputeTaskServiceImpl implement
             }*/
             for(int i=0; i  < threadNum; i++){
                 List<String> subList = keyList.subList(i*step, (i == (threadNum-1) ? ((i+1)*step + other) : (i+1)*step));
-                log.info("分给单个线程的keylist长度"+subList.size());
+//                log.info("分给单个线程的keylist长度"+subList.size());
                 //taskList.add(new QueryHbaseTask(subList, dataObject));
                 completionService.submit(new QueryRedisTask(subList));
             }
@@ -105,7 +105,6 @@ public class KpiTableComputeTaskService extends ComputeTaskServiceImpl implement
         }
         long endTime = System.currentTimeMillis();
         log.info("3个线程查hbase总时间"+(endTime - startTime)/1000 );
-        //List<String> hbaseResult = queryDataService.queryData(keyList, dataObject);
 
         if(redisResult!=null&&redisResult.size()>0){
             log.info("查询结果集："+redisResult.size());

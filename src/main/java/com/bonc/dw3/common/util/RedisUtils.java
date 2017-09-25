@@ -38,15 +38,4 @@ public class RedisUtils {
         return batchResult;
     }
 
-//    public static void main(String[] args) {
-//        List<String> list = Arrays.asList(new String[]{"DAY#20170806#CKP_23353#010#V0152302#**#20AAAAAA#10AA#881","DAY#20170817#CKP_23353#038#V0350600#**#30AAAAAA#99AA#01"});
-//        List<Object> result = getResult(list);
-//        for (Object object: result){
-//            if (null!=object){
-//                System.out.println(String.valueOf(object));
-//            }
-//
-//        }
-//
-//    }
 }
