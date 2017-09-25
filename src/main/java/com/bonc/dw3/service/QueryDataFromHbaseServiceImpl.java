@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,8 +45,8 @@ public class QueryDataFromHbaseServiceImpl implements QueryDataService{
     @Override
     public List<String> queryRedisData(List<String> keyList) {
         log.info("---传进来的keylist长度"+keyList.size());
-        List<Object> redisResult = null;
-        List<String> resultList = null;
+        List<Object> redisResult = new ArrayList<>();
+        List<String> resultList = new ArrayList<>();
         try {
             redisResult = RedisUtils.getResult(keyList);
             log.info("------resResult长度："+redisResult.size());
@@ -53,7 +54,7 @@ public class QueryDataFromHbaseServiceImpl implements QueryDataService{
             log.error("query redis failure", e);
         }
         for (Object result:redisResult){
-            if (null!= result){
+            if (null != result){
                 log.info("----本条result"+String.valueOf(result));
                 resultList.add(String.valueOf(result));
             }
