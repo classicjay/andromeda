@@ -39,7 +39,7 @@ public class RedisUtils {
                 jcp.get(key);
             }
             batchResult = jcp.syncAndReturnAll();*/
-            int threadCount = 50;
+            int threadCount = 10;
             RedisThread[] threadArr = new RedisThread[threadCount];
 
             int count = keyList.size();

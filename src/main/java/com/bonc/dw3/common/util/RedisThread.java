@@ -30,7 +30,7 @@ public class RedisThread  extends Thread {
         //List<Object> result = new ArrayList<>();
         JedisClusterPipeline jcp = JedisClusterPipeline.pipelined(jedisCluster);
         long start = System.currentTimeMillis();
-        System.out.println(list.size());
+        //System.out.println(list.size());
         for(int i = 0;i<list.size();i++){
             jcp.get(list.get(i));
         }
