@@ -11,7 +11,7 @@ import java.util.List;
  * Created by zg on 2017/9/26.
  */
 public class RedisThread  extends Thread {
-    private Logger log = LoggerFactory.getLogger(RedisUtils.RedisThread.class);
+    private Logger log = LoggerFactory.getLogger(RedisThread.class);
 
 
     List<String> list;
