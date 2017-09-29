@@ -21,6 +21,6 @@ public class SubjectConfiguration {
 	}
 
 	private ApiInfo buildApiInf() {
-		return new ApiInfoBuilder().title("DW3项目中使用Swagger2 UI构建API文档").contact("专题").version("1.0").build();
+		return new ApiInfoBuilder().title("数据服务Redis版本").contact("zj").version("1.0").build();
 	}
 }
