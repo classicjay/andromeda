@@ -159,7 +159,7 @@ public class ComputeTaskServiceImpl implements ComputeTaskService {
             }
             if(SystemVariableService.acctTypeDay.equals(dataObject.getDateType())) {
                 hashKey.append("#");
-                hashKey.append("**");
+                hashKey.append("-1");
             }
 
             rowKey.append(hashKey);
@@ -190,7 +190,7 @@ public class ComputeTaskServiceImpl implements ComputeTaskService {
             }
             if(SystemVariableService.acctTypeDay.equals(dataObject.getDateType())) {
                 hashKey.append("#");
-                hashKey.append("**");
+                hashKey.append("-1");
             }
 
             rowKey.append(hashKey);
