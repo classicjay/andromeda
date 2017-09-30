@@ -47,7 +47,7 @@ public class AndromedaApplication {
 		return new RestTemplate();
 	}
 
-	@Bean
+	//@Bean
 	public HttpMessageConverters fastJsonHttpMessageConverters(){
 		//1.需要定义一个convert转换消息的对象;
 		FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
