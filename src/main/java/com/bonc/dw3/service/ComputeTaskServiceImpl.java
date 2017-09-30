@@ -329,6 +329,7 @@ public class ComputeTaskServiceImpl implements ComputeTaskService {
             rowKey.setLength(0);
         }
         log.info("-------------rowKey长度"+rowKeyList.size());
+        log.info("rowKey集合：  "+(rowKeyList.size() > 1 ? rowKeyList.get(0) : null));
         return rowKeyList;
     }
 
