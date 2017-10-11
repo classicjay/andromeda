@@ -152,12 +152,12 @@ public class ComputeServiceImpl implements ComputeService{
                         if (null != singleMap.get(sumArr[i].toString()) && !"".equals(singleMap.get(sumArr[i].toString()).toString())){
                             sumFieldValue = singleMap.get(sumArr[i].toString()).toString();
                             if (!"null".equals(nxToken)){
-                                sumValue.append(decimalFormat.format(new BigDecimal(sumFieldValue).doubleValue() +(new BigDecimal(nxToken).doubleValue())))
+                                sumValue.append(new BigDecimal(sumFieldValue).add(new BigDecimal(nxToken)))
                                         .append("|");
                             }
                         }else {
                             if (!"null".equals(nxToken)) {
-                                sumValue.append(decimalFormat.format(0 + (new BigDecimal(nxToken).doubleValue())))
+                                sumValue.append(new BigDecimal(nxToken))
                                         .append("|");
                             }
                         }
@@ -172,7 +172,7 @@ public class ComputeServiceImpl implements ComputeService{
                     if (null == sumArr[i]){
                         sumValue.append(null+"|");
                     }else if (null != singleMap.get(sumArr[i].toString()) && !"".equals(singleMap.get(sumArr[i].toString()).toString())){
-                        sumValue.append(decimalFormat.format(new BigDecimal(singleMap.get(sumArr[i].toString()).toString()).doubleValue())).append("|");
+                        sumValue.append(new BigDecimal(singleMap.get(sumArr[i].toString()).toString())).append("|");
                     }else {
                         sumValue.append(0).append("|");
                     }
