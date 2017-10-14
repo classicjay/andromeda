@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cloud</groupId>
-	<artifactId>andromeda</artifactId>
+	<artifactId>andromeda-v1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>andromeda</name>
-	<description>andromeda(redis数据服务)</description>
+	<name>andromeda-v1</name>
+	<description>andromeda v1(redis数据服务测试环境)</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
