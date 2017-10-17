@@ -874,7 +874,7 @@ public class KpiService implements EnvironmentAware {
         @Override
         public Object call() throws Exception {
             //调用计算引擎，返回结果
-            return kpiTableComputeTaskService.run(dataObject);
+            return computeTaskService.run(dataObject);
         }
     }
 

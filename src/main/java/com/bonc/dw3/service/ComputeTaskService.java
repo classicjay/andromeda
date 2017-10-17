@@ -1,7 +1,6 @@
 package com.bonc.dw3.service;
 
 import com.bonc.dw3.bean.DataObject;
-import org.apache.hadoop.hbase.client.Get;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -15,6 +14,6 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public interface ComputeTaskService {
     List<Map<String,Object>> run(DataObject dataObject);
-    List<Get> generateKeyList(DataObject dataObject);
-    List<String> generateRedisKeyList(DataObject dataObject);
+    Map<String, Object> generateKeyList(DataObject dataObject);
+//    List<String> generateRedisKeyList(DataObject dataObject);
 }
